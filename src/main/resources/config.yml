@@ -1,0 +1,17 @@
+#    ____           _     _ _       _ _     _
+#   |  _ \__      _| |__ (_) |_ ___| (_)___| |_ ___ _ __
+#   | | | \ \ /\ / / '_ \| | __/ _ \ | / __| __/ _ \ '__|
+#   | |_| |\ V  V /| | | | | ||  __/ | \__ \ ||  __/ |
+#   |____/  \_/\_/ |_| |_|_|\__\___|_|_|___/\__\___|_|
+#                                                        -- By clerick_x
+# Made for BoologamMC
+
+# Bot section
+token: ""
+guild-id: ""
+
+# Whitelist kick message
+whitelist-kick-message: "You are not whitelisted"
+
+# Set the whitelist add and remove channel's id here
+whitelist-add-channel: ""

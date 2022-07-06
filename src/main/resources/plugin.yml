@@ -1,0 +1,36 @@
+name: Dwhitelister
+description: A primitive whitelist bridge
+author: Clerick_x
+main: github.clerickx.Dwhitelister.Dwhitelister
+version: 1.18.2
+
+commands:
+  Dwhitelist:
+    permission: Dwhitelister.whitelist
+    description: /<command> [add|remove|list] - Whitelist command
+  Dwreload:
+    aliases: "Dwr"
+    permission: Dwhitelister.reload
+    description: /<command> - Reloads Dwhitelister
+  Dwmigrate:
+    aliases: "Dwm"
+    permission: Dwhitelister.migrate
+    description: /<command> - Migrates default whitelist to Dwhitelister
+  Dwsave:
+    aliases: "Dws"
+    permission: Dwhitelist.save
+    description: /<command> - Saves the list to whitelist.yml
+
+permissions:
+  Dwhitelister.whitelist:
+    description: Allows /Dwhitelist command
+    default: op
+  Dwhitelister.reload:
+    description: Allows /Dwr command
+    default: op
+  Dwhitelister.migrate:
+    description: Allows /Dwm command
+    default: op
+  Dwhitelister.save:
+    description: Allows /Dws command
+    default: op
