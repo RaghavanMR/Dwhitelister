@@ -14,6 +14,7 @@ public class Dwhitelister implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (args.length == 0) {
             help(commandSender);
+            return true;
         } else if (args.length == 1) {
             switch (args[0]) {
                 case "help":
@@ -61,7 +62,7 @@ public class Dwhitelister implements CommandExecutor {
     }
 
     private void help(CommandSender sender) {
-        sender.sendMessage("/Dwhitelister help\n" +
+        sender.sendMessage("\n/Dwhitelister help\n" +
                 "/Dwhitelister [help|add|remove|list] [playername] - whitelist/help command\n" +
                 "/Dwreload [all|whitelist|bot] - reload command\n" +
                 "/Dwsave - saves Whitelist from memory\n" +

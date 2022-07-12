@@ -5,7 +5,8 @@ main: github.clerickx.Dwhitelister.Dwhitelister
 version: 1.18.2
 
 commands:
-  Dwhitelist:
+  Dwhitelister:
+    aliases: "Dw"
     permission: Dwhitelister.whitelist
     description: /<command> [help|add|remove|list] [playername] - Whitelist command
   Dwreload:

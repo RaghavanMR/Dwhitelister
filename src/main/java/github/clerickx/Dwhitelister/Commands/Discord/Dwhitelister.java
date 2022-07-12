@@ -7,6 +7,7 @@ import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.internal.utils.PermissionUtil;
 import org.bukkit.Bukkit;
 
@@ -26,29 +27,29 @@ public class Dwhitelister extends ListenerAdapter {
             return;
         }
 
-        String playername = e.getOption("playername").getAsString();
+        OptionMapping playername = e.getOption("playername");
 
         switch (e.getOption("type").getAsString()) {
             case "add":
                 if (playername == null) {
                     e.getHook().sendMessage(":x: Playername can't be null for add").setEphemeral(true).queue();
                 }
-                int add = whitelist.add(playername);
+                int add = whitelist.add(playername.getAsString());
                 if (add == 0) {
-                    e.getHook().sendMessageEmbeds(ebuild(playername, e.getMember(), "add_fail")).queue();
+                    e.getHook().sendMessageEmbeds(ebuild(playername.getAsString(), e.getMember(), "add_fail")).queue();
                 } else if (add == 1) {
-                    e.getHook().sendMessageEmbeds(ebuild(playername, e.getMember(), "add_success")).queue();
+                    e.getHook().sendMessageEmbeds(ebuild(playername.getAsString(), e.getMember(), "add_success")).queue();
                 }
                 break;
             case "remove":
                 if (playername == null) {
                     e.getHook().sendMessage(":x: Playername can't be null for remove").setEphemeral(true).queue();
                 }
-                int remove = whitelist.remove(playername);
+                int remove = whitelist.remove(playername.getAsString());
                 if (remove == 0) {
-                    e.getHook().sendMessageEmbeds(ebuild(playername, e.getMember(), "remove_fail")).queue();
+                    e.getHook().sendMessageEmbeds(ebuild(playername.getAsString(), e.getMember(), "remove_fail")).queue();
                 } else if (remove == 1) {
-                    e.getHook().sendMessageEmbeds(ebuild(playername, e.getMember(), "remove_success")).queue();
+                    e.getHook().sendMessageEmbeds(ebuild(playername.getAsString(), e.getMember(), "remove_success")).queue();
                 }
                 break;
             case "list":
