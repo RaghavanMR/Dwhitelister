@@ -9,20 +9,20 @@ import java.util.List;
 
 public class whitelist {
 
-    public static int add(OfflinePlayer player) {
-        if (Dwhitelister.whitelist.contains(player.getName())) {
+    public static int add(String player) {
+        if (Dwhitelister.whitelist.contains(player)) {
             return 0;
         } else {
-            Dwhitelister.whitelist.add(player.getName());
+            Dwhitelister.whitelist.add(player);
             return 1;
         }
     }
 
-    public static int remove(OfflinePlayer player) {
-        if (!Dwhitelister.whitelist.contains(player.getName())) {
+    public static int remove(String player) {
+        if (!Dwhitelister.whitelist.contains(player)) {
             return 0;
         } else {
-            Dwhitelister.whitelist.remove(player.getName());
+            Dwhitelister.whitelist.remove(player);
             return 1;
         }
     }

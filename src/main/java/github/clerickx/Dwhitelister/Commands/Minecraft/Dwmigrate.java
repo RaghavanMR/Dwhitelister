@@ -4,10 +4,12 @@ import github.clerickx.Dwhitelister.Dwhitelister;
 
 import github.clerickx.Dwhitelister.Utils.config;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +17,9 @@ import java.util.List;
 public class Dwmigrate implements CommandExecutor {
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         List<String> whitelistedplayers = new ArrayList<>();
-        Dwhitelister.getLogger.warning("Don't run this command repeatedly!");
+        sender.sendMessage(ChatColor.GOLD + "Don't run this command repeatedly!");
 
         for (OfflinePlayer player : Bukkit.getWhitelistedPlayers()) {
             whitelistedplayers.add(player.getName());
@@ -28,7 +30,7 @@ public class Dwmigrate implements CommandExecutor {
 
         Dwhitelister.whitelist.clear();
         Dwhitelister.whitelist = config.get().getStringList("whitelist");
-        Dwhitelister.getLogger.info("Migrated " + Dwhitelister.whitelist.size() + " whitelist(s)");
+        sender.sendMessage("Migrated " + Dwhitelister.whitelist.size() + " whitelist(s)");
         return true;
     }
 

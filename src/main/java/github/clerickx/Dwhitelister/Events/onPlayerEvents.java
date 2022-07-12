@@ -14,7 +14,7 @@ public class onPlayerEvents implements Listener {
             e.allow();
         } else {
             if (e.getPlayer().isBanned()) {
-                whitelist.remove(e.getPlayer());
+                whitelist.remove(e.getPlayer().getName());
             } else {
                 e.disallow(PlayerLoginEvent.Result.KICK_WHITELIST, Dwhitelister.getConf.getString("whitelist-kick-message"));
             }

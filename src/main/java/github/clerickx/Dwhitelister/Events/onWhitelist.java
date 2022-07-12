@@ -23,7 +23,7 @@ public class onWhitelist extends ListenerAdapter {
     }
 
     private void onWhitelistAdd(Message msg) {
-        int add = whitelist.add(Bukkit.getOfflinePlayer(msg.getContentRaw()));
+        int add = whitelist.add((msg.getContentRaw()));
 
         switch (add) {
             case 0:

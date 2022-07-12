@@ -30,7 +30,10 @@ public class Dwhitelister extends ListenerAdapter {
 
         switch (e.getOption("type").getAsString()) {
             case "add":
-                int add = whitelist.add(Bukkit.getOfflinePlayer(playername));
+                if (playername == null) {
+                    e.getHook().sendMessage(":x: Playername can't be null for add").setEphemeral(true).queue();
+                }
+                int add = whitelist.add(playername);
                 if (add == 0) {
                     e.getHook().sendMessageEmbeds(ebuild(playername, e.getMember(), "add_fail")).queue();
                 } else if (add == 1) {
@@ -38,7 +41,10 @@ public class Dwhitelister extends ListenerAdapter {
                 }
                 break;
             case "remove":
-                int remove = whitelist.remove(Bukkit.getOfflinePlayer(playername));
+                if (playername == null) {
+                    e.getHook().sendMessage(":x: Playername can't be null for remove").setEphemeral(true).queue();
+                }
+                int remove = whitelist.remove(playername);
                 if (remove == 0) {
                     e.getHook().sendMessageEmbeds(ebuild(playername, e.getMember(), "remove_fail")).queue();
                 } else if (remove == 1) {

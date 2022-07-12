@@ -2,6 +2,7 @@ package github.clerickx.Dwhitelister;
 
 import github.clerickx.Dwhitelister.Commands.Minecraft.Dwmigrate;
 import github.clerickx.Dwhitelister.Commands.Minecraft.Dwreload;
+import github.clerickx.Dwhitelister.Commands.Minecraft.Dwsave;
 import github.clerickx.Dwhitelister.Events.onPlayerEvents;
 import github.clerickx.Dwhitelister.Events.onWhitelist;
 import github.clerickx.Dwhitelister.Utils.config;
@@ -53,8 +54,10 @@ public class Dwhitelister extends JavaPlugin {
     public void onEnable() {
 
         if (!Bukkit.isWhitelistEnforced()) {
+            getCommand("Dwhitelister").setExecutor(new github.clerickx.Dwhitelister.Commands.Minecraft.Dwhitelister());
             getCommand("Dwreload").setExecutor(new Dwreload());
             getCommand("Dwmigrate").setExecutor(new Dwmigrate());
+            getCommand("Dwsave").setExecutor(new Dwsave());
         } else {
             getLogger().warning(ChatColor.RED + "Plugin Disabled! disable whitelist and restart");
         }
@@ -70,21 +73,20 @@ public class Dwhitelister extends JavaPlugin {
         } catch (LoginException | InterruptedException | IllegalStateException e) {
             getLogger().warning(e.getMessage());
         }
-        if (jda != null) {
+        try {
             jda.getGuildById(getConfig().getString("guild-id")).upsertCommand(new CommandData("dwhitelister", "Command for Dwhitelister")
                     .addOptions(new OptionData(OptionType.STRING, "type", "Type of action")
                             .setRequired(true)
                             .addChoice("add", "add")
                             .addChoice("remove", "remove")
                             .addChoice("list", "list"))
-                    .addOptions(new OptionData(OptionType.STRING, "playername", "Player name to take actions").setRequired(true))
+                    .addOptions(new OptionData(OptionType.STRING, "playername", "Player name to take actions").setRequired(false))
             ).queue(null, new ErrorHandler()
                     .handle(ErrorResponse.MISSING_ACCESS, (e) -> getLogger().warning("Insufficient permissions! Slash commands can't be registered"))
             );
-        } else {
-            getLogger().warning("Guild not found! Slash commands will not work");
+        } catch (NullPointerException e) {
+            getLogger().warning(e.getMessage());
         }
-
         saveTimer.schedule(new TimerTask() {
             @Override
             public void run() {

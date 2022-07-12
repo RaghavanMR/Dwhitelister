@@ -13,5 +13,5 @@ guild-id: ""
 # Whitelist kick message
 whitelist-kick-message: "You are not whitelisted"
 
-# Set the whitelist add and remove channel's id here
+# Set the whitelist add and remove channel's id here leave empty if you don't need it
 whitelist-add-channel: ""
